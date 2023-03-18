@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 
+require('dotenv').config()
+
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Fuzoku`,
@@ -12,7 +14,9 @@ const config: GatsbyConfig = {
   plugins: ["gatsby-plugin-emotion", "gatsby-plugin-image", "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "src/images/icon.png"
+      "icon": "src/images/icon.png",
+      "apiKey": process.env.MICROCMS_API_KEY,
+      "serviceId": process.env.MICROCMS_SERVICE_ID,
     }
   }, "gatsby-plugin-sharp", "gatsby-transformer-sharp", {
     resolve: 'gatsby-source-filesystem',
@@ -21,7 +25,21 @@ const config: GatsbyConfig = {
       "path": "./src/images/"
     },
     __key: "images"
-  }]
+  },
+  {
+    resolve: 'gatsby-source-microcms',
+    options: {
+      apiKey: process.env.MICROCMS_API_KEY,
+      serviceId: process.env.MICROCMS_SERVICE_ID,
+      apis: [
+      {
+        endpoint: 'blogs',
+      },
+      {
+        endpoint: 'categories',
+      }],
+    },}
+  ]
 };
 
 export default config;

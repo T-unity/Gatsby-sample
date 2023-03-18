@@ -18,6 +18,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "dayjs": "^1.11.7",
     "gatsby": "^5.7.0",
     "gatsby-plugin-emotion": "^8.7.0",
     "gatsby-plugin-image": "^3.7.0",
